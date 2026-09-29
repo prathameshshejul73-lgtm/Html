@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Special Birthday Surprise ✨</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #ff6fae;
+    --pink2: #ff9acb;
+    --purple: #9b7bff;
+    --white: #ffffff;
+    --glass: rgba(255,255,255,0.10);
+    --border: rgba(255,255,255,0.20);
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: white;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,105,180,.22), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(155,123,255,.22), transparent 30%),
+        linear-gradient(135deg, #090612, #16091d, #0b0715);
+}
+
+/* ---------- BACKGROUND ---------- */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.orb {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: .35;
+    animation: floatOrb 10s infinite alternate ease-in-out;
+}
+
+.orb.one {
+    background: #ff4fa3;
+    top: -100px;
+    left: -80px;
+}
+
+.orb.two {
+    background: #8d6cff;
+    right: -100px;
+    bottom: -80px;
+    animation-delay: 2s;
+}
+
+.orb.three {
+    background: #ff7ac3;
+    width: 180px;
+    height: 180px;
+    top: 45%;
+    left: 45%;
+    animation-delay: 4s;
+}
+
+@keyframes floatOrb {
+    from {
+        transform: translate(0,0) scale(1);
+    }
+    to {
+        transform: translate(70px,-40px) scale(1.2);
+    }
+}
+
+.particle {
+    position: fixed;
+    pointer-events: none;
+    animation: particleFloat linear infinite;
+    opacity: .65;
+}
+
+@keyframes particleFloat {
+    from {
+        transform: translateY(110vh) rotate(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: .8;
+    }
+    85% {
+        opacity: .8;
+    }
+    to {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ---------- PROGRESS ---------- */
+
+.progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    z-index: 100;
+    background: rgba(255,255,255,.08);
+}
+
+.progress-bar {
+    height: 100%;
+    width: 16.6%;
+    background: linear-gradient(90deg, var(--pink), var(--purple));
+    box-shadow: 0 0 15px var(--pink);
+    transition: width .8s ease;
+}
+
+/* ---------- SCREEN ---------- */
+
+.screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(.94) translateY(20px);
+    transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.22,1,.36,1),
+        visibility .7s;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(0);
+}
+
+.container {
+    width: min(92%, 520px);
+    text-align: center;
+}
+
+/* ---------- GLASS ---------- */
+
+.glass {
+    padding: 40px 28px;
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.13),
+        rgba(255,255,255,.04)
+    );
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+/* ---------- INTRO ---------- */
+
+.intro .small {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--pink2);
+    margin-bottom: 20px;
+    animation: fadeUp 1s ease .2s both;
+}
+
+.intro h1 {
+    font-size: clamp(48px, 12vw, 82px);
+    line-height: .95;
+    font-weight: 700;
+    letter-spacing: -3px;
+    background: linear-gradient(135deg, #fff, #ff9bcb, #bca8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 40px rgba(255,120,190,.25);
+    animation: titleReveal 1.2s cubic-bezier(.22,1,.36,1) both;
+}
+
+.intro p {
+    margin: 25px 0 32px;
+    line-height: 1.8;
+    color: rgba(255,255,255,.72);
+    animation: fadeUp 1s ease .5s both;
+}
+
+@keyframes titleReveal {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(.9);
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- BUTTON ---------- */
+
+.start {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    padding: 15px 28px;
+    border-radius: 50px;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ff5fa8, #a178ff);
+    box-shadow:
+        0 10px 30px rgba(255,95,168,.28),
+        0 0 0 1px rgba(255,255,255,.1) inset;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.start::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.4),
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0%, 55% { left: -100%; }
+    75%, 100% { left: 150%; }
+}
+
+.start:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 15px 40px rgba(255,95,168,.4);
+}
+
+.start:active {
+    transform: scale(.96);
+}
+
+/* ---------- LOCK ---------- */
+
+.lock-box {
+    width: min(92%, 430px);
+    padding: 35px 25px;
+    text-align: center;
+    border-radius: 30px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.17);
+    backdrop-filter: blur(25px);
+    box-shadow: 0 30px 70px rgba(0,0,0,.45);
+}
+
+.lock-icon {
+    font-size: 55px;
+    margin-bottom: 12px;
+    animation: lockFloat 2.5s infinite ease-in-out;
+    filter: drop-shadow(0 0 18px rgba(255,120,190,.5));
+}
+
+@keyframes lockFloat {
+    50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+.lock-box h2,
+.letter-box h2,
+.cake-container h2,
+.final-container h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.lock-box p,
+.cake-container p {
+    color: rgba(255,255,255,.65);
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: 13px;
+    margin: 25px 0;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.4);
+    transition: .25s;
+}
+
+.dot.filled {
+    background: var(--pink);
+    border-color: var(--pink);
+    box-shadow: 0 0 15px var(--pink);
+    transform: scale(1.15);
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 280px;
+    margin: auto;
+}
+
+.key {
+    height: 58px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.13);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    background: rgba(255,255,255,.07);
+    transition: .2s;
+}
+
+.key:hover {
+    background: rgba(255,255,255,.14);
+    transform: translateY(-2px);
+}
+
+.key:active {
+    transform: scale(.9);
+    background: rgba(255,105,180,.25);
+}
+
+.error {
+    min-height: 22px;
+    margin-top: 16px;
+    color: #ff8ebd;
+    font-size: 13px;
+}
+
+/* ---------- LETTER ---------- */
+
+.letter-box {
+    width: min(92%, 560px);
+    padding: 35px 28px;
+    text-align: center;
+    border-radius: 30px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.17);
+    backdrop-filter: blur(25px);
+    box-shadow: 0 30px 80px rgba(0,0,0,.45);
+}
+
+.letter {
+    position: relative;
+    min-height: 230px;
+    margin: 25px 0;
+    padding: 28px;
+    text-align: left;
+    line-height: 1.9;
+    font-family: Georgia, serif;
+    color: #4a3040;
+    background:
+        linear-gradient(rgba(255,250,244,.95), rgba(255,244,250,.95));
+    border-radius: 5px;
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.3),
+        inset 0 0 40px rgba(255,150,200,.08);
+}
+
+.letter::before {
+    content: "💌";
+    position: absolute;
+    top: -18px;
+    right: -10px;
+    font-size: 35px;
+    transform: rotate(12deg);
+}
+
+.cursor {
+    display: inline-block;
+    width: 2px;
+    height: 18px;
+    background: #ff5fa8;
+    margin-left: 3px;
+    animation: blink .8s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* ---------- CAKE ---------- */
+
+.cake-container {
+    text-align: center;
+}
+
+.cake {
+    position: relative;
+    width: 260px;
+    height: 180px;
+    margin: 65px auto 30px;
+}
+
+.cake-top {
+    position: absolute;
+    bottom: 25px;
+    left: 10px;
+    width: 240px;
+    height: 80px;
+    border-radius: 18px 18px 25px 25px;
+    background: linear-gradient(180deg, #ffb5d8, #e96c9d);
+    box-shadow:
+        0 25px 40px rgba(0,0,0,.3),
+        inset 0 8px 0 rgba(255,255,255,.3);
+}
+
+.cream {
+    position: absolute;
+    bottom: 82px;
+    left: 18px;
+    width: 224px;
+    height: 25px;
+    border-radius: 50%;
+    background: #fff2f8;
+    box-shadow: 0 3px 8px rgba(0,0,0,.15);
+}
+
+.candles {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    z-index: 5;
+}
+
+.candle {
+    position: relative;
+    width: 16px;
+    height: 65px;
+    border-radius: 6px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #b67cff, #ff9dca);
+    box-shadow: inset 3px 0 rgba(255,255,255,.3);
+}
+
+.flame {
+    position: absolute;
+    width: 17px;
+    height: 25px;
+    top: -25px;
+    left: 0;
+    border-radius: 50% 50% 50% 50%;
+    background: #ffd36b;
+    box-shadow: 0 0 18px #ffb13b;
+    animation: flame 1s infinite alternate;
+}
+
+@keyframes flame {
+    from { transform: scale(1) rotate(-2deg); }
+    to { transform: scale(1.12) rotate(3deg); }
+}
+
+.candle.off .flame {
+    opacity: 0;
+    transform: scale(0);
+    transition: .35s;
+}
+
+.candle.off {
+    opacity: .6;
+}
+
+/* ---------- FINAL ---------- */
+
+.final-container {
+    width: min(92%, 600px);
+    text-align: center;
+    padding: 45px 25px;
+}
+
+.big-heart {
+    font-size: 90px;
+    animation: heartbeat 1.5s infinite;
+    filter: drop-shadow(0 0 25px rgba(255,80,150,.5));
+}
+
+@keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
+
+.final-container h2 {
+    font-size: clamp(38px, 9vw, 65px);
+    background: linear-gradient(135deg,#fff,#ff91c2,#b49aff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.final-message {
+    max-width: 500px;
+    margin: 25px auto 30px;
+    line-height: 1.8;
+    color: rgba(255,255,255,.78);
+}
+
+/* ---------- CONFETTI ---------- */
+
+.confetti {
+    position: fixed;
+    width: 9px;
+    height: 14px;
+    z-index: 200;
+    pointer-events: none;
+    animation: confettiFall 3.5s linear forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-20px) rotate(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* ---------- SHAKE ---------- */
+
+.shake {
+    animation: shake .4s ease;
+}
+
+@keyframes shake {
+    25% { transform: translateX(-8px); }
+    50% { transform: translateX(8px); }
+    75% { transform: translateX(-5px); }
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:500px) {
+
+    .glass {
+        padding: 32px 20px;
+    }
+
+    .intro h1 {
+        letter-spacing: -2px;
+    }
+
+    .letter {
+        min-height: 250px;
+        padding: 22px;
+        font-size: 14px;
+    }
+
+    .cake {
+        transform: scale(.85);
+        margin-top: 45px;
+    }
+
+    .key {
+        height: 54px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+</div>
+
+<div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<!-- INTRO -->
+<section class="screen active" id="intro">
+    <div class="container glass intro">
+
+        <div class="small">
+            A tiny surprise awaits
+        </div>
+
+        <h1>
+            For Someone<br>
+            Special ✨
+        </h1>
+
+        <p>
+            A few little surprises.<br>
+            One birthday celebration.
+        </p>
+
+        <button class="start" id="startButton">
+            Begin the Surprise 💌
+        </button>
+
+    </div>
+</section>
+
+<!-- LOCK -->
+<section class="screen" id="lock">
+    <div class="lock-box" id="lockBox">
+
+        <div class="lock-icon">
+            🔐
+        </div>
+
+        <h2>
+            A Little Secret
+        </h2>
+
+        <p>
+            Enter the special 4-digit code
+        </p>
+
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+
+        <div class="keypad">
+
+            <button class="key" data-number="1">1</button>
+            <button class="key" data-number="2">2</button>
+            <button class="key" data-number="3">3</button>
+
+            <button class="key" data-number="4">4</button>
+            <button class="key" data-number="5">5</button>
+            <button class="key" data-number="6">6</button>
+
+            <button class="key" data-number="7">7</button>
+            <button class="key" data-number="8">8</button>
+            <button class="key" data-number="9">9</button>
+
+            <button class="key" data-number="clear">C</button>
+            <button class="key" data-number="0">0</button>
+            <button class="key" data-number="back">⌫</button>
+
+        </div>
+
+        <div class="error" id="error"></div>
+
+    </div>
+</section>
+
+<!-- LETTER -->
+<section class="screen" id="letter">
+    <div class="letter-box">
+
+        <h2>
+            A Little Letter 💌
+        </h2>
+
+        <div class="letter" id="letterText"></div>
+
+        <button class="start next" id="letterNext">
+            Continue ✨
+        </button>
+
+    </div>
+</section>
+
+<!-- CAKE -->
+<section class="screen" id="cake">
+    <div class="cake-container">
+
+        <h2>
+            Make A Wish 🎂
+        </h2>
+
+        <div class="cake">
+
+            <div class="candles">
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+            </div>
+
+            <div class="cake-top"></div>
+
+            <div class="cream"></div>
+
+        </div>
+
+        <p>
+            Tap all three candles to blow them out 🕯️
+        </p>
+
+        <br>
+
+        <button class="start next" id="cakeNext">
+            Continue 🎉
+        </button>
+
+    </div>
+</section>
+
+<!-- FINAL -->
+<section class="screen" id="final">
+    <div class="final-container">
+
+        <div class="big-heart">
+           🎉
+        </div>
+
+        <h2>
+            Happy Birthday! 🎂
+        </h2>
+
+        <p class="final-message">
+            May your special day be filled with happiness,
+            laughter, beautiful memories and lots of wonderful moments.
+            <br><br>
+            Keep smiling and keep shining! ✨
+            <br><br>
+            You deserve all the happiness in the world.
+        </p>
+
+        <button class="start" id="restart">
+            Replay Surprise 🔄
+        </button>
+
+    </div>
+</section>
+
+<script>
+
+/* ---------- SCREEN SYSTEM ---------- */
+
+const screens = [
+    "intro",
+    "lock",
+    "letter",
+    "cake",
+    "final"
+];
+
+let currentScreen = 0;
+
+function showScreen(id) {
+
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    const target = document.getElementById(id);
+
+    if (target) {
+        target.classList.add("active");
+    }
+
+    currentScreen = screens.indexOf(id);
+
+    const progress =
+        ((currentScreen + 1) / screens.length) * 100;
+
+    document.getElementById("progressBar").style.width =
+        progress + "%";
+}
+
+/* ---------- PARTICLES ---------- */
+
+function createParticles() {
+
+    const symbols = ["✦", "✧", "♡", "·", "✨"];
+
+    for (let i = 0; i < 28; i++) {
+
+        const particle = document.createElement("div");
+
+        particle.className = "particle";
+
+        particle.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        particle.style.left =
+            Math.random() * 100 + "%";
+
+        particle.style.fontSize =
+            (8 + Math.random() * 13) + "px";
+
+        particle.style.animationDuration =
+            (6 + Math.random() * 9) + "s";
+
+        particle.style.animationDelay =
+            Math.random() * 8 + "s";
+
+        document.body.appendChild(particle);
+    }
+}
+
+createParticles();
+
+/* ---------- INTRO ---------- */
+
+document.getElementById("startButton").addEventListener("click", () => {
+
+    showScreen("lock");
+
+});
+
+/* ---------- PASSWORD ---------- */
+
+const correctCode = "1002";
+
+let enteredCode = "";
+
+const keys =
+    document.querySelectorAll(".key");
+
+const dots =
+    document.querySelectorAll(".dot");
+
+const error =
+    document.getElementById("error");
+
+const lockBox =
+    document.getElementById("lockBox");
+
+keys.forEach(key => {
+
+    key.addEventListener("click", () => {
+
+        const value =
+            key.dataset.number;
+
+        if (value === "clear") {
+
+            enteredCode = "";
+
+        } else if (value === "back") {
+
+            enteredCode =
+                enteredCode.slice(0, -1);
+
+        } else {
+
+            if (enteredCode.length < 4) {
+                enteredCode += value;
+            }
+
+        }
+
+        updateDots();
+
+        if (enteredCode.length === 4) {
+
+            setTimeout(checkCode, 250);
+
+        }
+
+    });
+
+});
+
+function updateDots() {
+
+    dots.forEach((dot, index) => {
+
+        dot.classList.toggle(
+            "filled",
+            index < enteredCode.length
+        );
+
+    });
+
+}
+
+function checkCode() {
+
+    if (enteredCode === correctCode) {
+
+        error.textContent = "Unlocked ✨";
+
+        setTimeout(() => {
+
+            showScreen("letter");
+            startTyping();
+
+        }, 500);
+
+    } else {
+
+        error.textContent =
+            "That code isn't quite right. Try again 💕";
+
+        lockBox.classList.remove("shake");
+
+        void lockBox.offsetWidth;
+
+        lockBox.classList.add("shake");
+
+        enteredCode = "";
+
+        updateDots();
+
+    }
+
+}
+
+/* ---------- LETTER ---------- */
+
+const letterMessage =
+`Hey Birthday Girl 🎉
+
+Today is a little different because someone special deserves a little extra happiness.
+
+I hope this birthday brings you countless smiles, peaceful moments, exciting adventures and memories that stay with you for a long time.
+
+Keep being the wonderful person you are, keep chasing your dreams, and never forget how special you are.
+
+Wishing you a beautiful birthday and an even more beautiful year ahead. ✨🎂`;
+
+let typingTimer;
+
+function startTyping() {
+
+    const letter =
+        document.getElementById("letterText");
+
+    letter.innerHTML = "";
+
+    let index = 0;
+
+    clearInterval(typingTimer);
+
+    typingTimer = setInterval(() => {
+
+        if (index < letterMessage.length) {
+
+            const character =
+                letterMessage[index];
+
+            if (character === "\n") {
+                letter.innerHTML += "<br>";
+            } else {
+                letter.innerHTML += character;
+            }
+
+            index++;
+
+        } else {
+
+            clearInterval(typingTimer);
+
+            letter.innerHTML +=
+                '<span class="cursor"></span>';
+
+        }
+
+    }, 22);
+
+}
+
+/* ---------- LETTER NEXT ---------- */
+
+document.getElementById("letterNext")
+.addEventListener("click", () => {
+
+    showScreen("cake");
+
+});
+
+/* ---------- CANDLES ---------- */
+
+const candles =
+    document.querySelectorAll(".candle");
+
+let candlesOff = 0;
+
+candles.forEach(candle => {
+
+    candle.addEventListener("click", () => {
+
+        if (candle.classList.contains("off")) {
+                        return;
+        }
+
+        candle.classList.add("off");
+
+        candlesOff++;
+
+        createSparkle(
+            candle.getBoundingClientRect().left +
+            candle.offsetWidth / 2,
+            candle.getBoundingClientRect().top
+        );
+
+        if (candlesOff === 3) {
+
+            document.querySelector(".cake-container p")
+                .textContent =
+                "All candles are out! Make your wish... ✨";
+
+        }
+
+    });
+
+});
+
+/* ---------- CAKE NEXT ---------- */
+
+document.getElementById("cakeNext")
+.addEventListener("click", () => {
+
+    showScreen("final");
+
+    launchConfetti();
+
+});
+
+/* ---------- SPARKLES ---------- */
+
+function createSparkle(x, y) {
+
+    for (let i = 0; i < 12; i++) {
+
+        const sparkle =
+            document.createElement("div");
+
+        sparkle.textContent =
+            ["✦", "✨", "·"][Math.floor(Math.random() * 3)];
+
+        sparkle.style.position = "fixed";
+        sparkle.style.left = x + "px";
+        sparkle.style.top = y + "px";
+        sparkle.style.pointerEvents = "none";
+        sparkle.style.zIndex = "150";
+        sparkle.style.fontSize =
+            (10 + Math.random() * 15) + "px";
+
+        document.body.appendChild(sparkle);
+
+        const angle =
+            Math.random() * Math.PI * 2;
+
+        const distance =
+            30 + Math.random() * 60;
+
+        const endX =
+            Math.cos(angle) * distance;
+
+        const endY =
+            Math.sin(angle) * distance;
+
+        sparkle.animate(
+            [
+                {
+                    transform: "translate(0,0) scale(1)",
+                    opacity: 1
+                },
+                {
+                    transform:
+                        `translate(${endX}px,${endY}px) scale(0)`,
+                    opacity: 0
+                }
+            ],
+            {
+                duration: 800,
+                easing: "ease-out"
+            }
+        );
+
+        setTimeout(() => {
+            sparkle.remove();
+        }, 850);
+
+    }
+
+}
+
+/* ---------- CONFETTI ---------- */
+
+function launchConfetti() {
+
+    const shapes =
+        ["◆", "●", "■", "✦", "♥"];
+
+    for (let i = 0; i < 120; i++) {
+
+        const piece =
+            document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.textContent =
+            shapes[Math.floor(Math.random() * shapes.length)];
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+        piece.style.top =
+            (-20 - Math.random() * 80) + "px";
+
+        piece.style.fontSize =
+            (8 + Math.random() * 12) + "px";
+
+        piece.style.animationDuration =
+            (2.5 + Math.random() * 2) + "s";
+
+        piece.style.animationDelay =
+            Math.random() * .8 + "s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+            piece.remove();
+        }, 5000);
+
+    }
+
+}
+
+/* ---------- RESTART ---------- */
+
+document.getElementById("restart")
+.addEventListener("click", () => {
+
+    enteredCode = "";
+    candlesOff = 0;
+
+    updateDots();
+
+    error.textContent = "";
+
+    candles.forEach(candle => {
+        candle.classList.remove("off");
+    });
+
+    document.querySelector(".cake-container p")
+        .textContent =
+        "Tap all three candles to blow them out 🕯️";
+
+    document.getElementById("letterText").innerHTML = "";
+
+    document.querySelectorAll(".confetti")
+        .forEach(item => item.remove());
+
+    showScreen("intro");
+
+});
+
+</script>
+
+</body>
+</html>
